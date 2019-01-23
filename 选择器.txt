@@ -1,0 +1,20 @@
+http://www.cnblogs.com/xinye/archive/2013/08/07/3243181.html  jsoup api介绍
+
+p:nth-last-child(2)  选择倒数第二个p标签
+ $("p:not(:gt(2))").css("background-color","yellow");//选择前三个，非从第三个开始的所有元素
+ $("p:gt(2):lt(5)").css("background-color","yellow");//选择第三个开始到倒数第五个结束的
+
+el, el, el:多个选择器组合，查找匹配任一选择器的唯一元素，例如：div.masthead, div.logo
+:lt(n): 同级索引值 小于 n，比如：td:lt(3) 表示小于三列的元素
+:gt(n):同级索引值 大于 n，比如： div p:gt(2)表示哪些div中有包含2个以上的p元素
+:eq(n): 同级索引值与n 相等 ，比如：form input:eq(1)表示包含一个input标签的Form元素
+:has(seletor): 包含元素的元素，比如：div:has(p)表示哪些div包含了p元素
+:not(selector): 不匹配的元素，比如： div:not(.logo) 表示不包含 class="logo" 元素的所有 div 列表
+:contains(text): 包含给定文本的元素，搜索不区分大不写，比如： p:contains(jsoup)
+:containsOwn(text): 查找直接包含给定文本的元素
+:matches(regex): 查找哪些元素的文本匹配指定的正则表达式，比如：div:matches((?i)login)
+:matchesOwn(regex): 查找自身包含文本匹配指定正则表达式的元素
+
+temp.setHf(el.select("div#artical_sth2>p:eq(1)").text());//作者
+temp.setNr(el.select("div#main_content p:gt(0)").text());//内容
+

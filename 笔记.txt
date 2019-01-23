@@ -1,0 +1,15 @@
+//忽视内容检测ignoreContentType(true)   maxBodySize(0)不限制获取字符长度默认1024k
+Connection conn = Jsoup.connect(URL).maxBodySize(0).timeout(8000);//connect连接，并且设置连接超时5秒
+//伪装成浏览器抓取
+conn.header("User-Agent","Mozilla/5.0 (Windows NT 6.1; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0");
+Response rs = conn.ignoreHttpErrors(true).ignoreContentType(true).method(Method.GET).execute();
+rs.body();
+Document doc = Jsoup.parse(rs.body());//parse解析
+Elements contents = doc.select(".main-wrap");//Elements select元素选择
+
+ String script =  "<script>" + "</script>"；
+//在得到的 document 对象的尾部追加这段script 
+doc.append(script);//append附加
+//输出处理后的 html ，这里可以做文件输出处理，输出html 供外部访问		
+String body = doc.html();//Element body = doc.body();    
+ this.output(body);
